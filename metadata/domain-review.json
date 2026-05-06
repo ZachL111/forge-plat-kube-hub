@@ -1,0 +1,73 @@
+{
+  "repo": "forge-plat-kube-hub",
+  "language": "Java",
+  "category": "Platform engineering",
+  "goal": "Package a Java local lab for kube analysis with windowed input fixtures, late-data behavior checks, and documented operating limits.",
+  "review_model": {
+    "terms": [
+      "rollout width",
+      "quota pressure",
+      "route drift",
+      "secret scope"
+    ],
+    "lanes": [
+      "ship",
+      "watch",
+      "hold"
+    ],
+    "score": "signal * 2 + slack + confidence - drag * 3",
+    "purpose": "surface the domain-specific cases that need the most careful review"
+  },
+  "cases": [
+    {
+      "name": "baseline",
+      "focus": "rollout width",
+      "signal": 41,
+      "slack": 48,
+      "drag": 32,
+      "confidence": 92,
+      "score": 126,
+      "lane": "watch"
+    },
+    {
+      "name": "stress",
+      "focus": "quota pressure",
+      "signal": 53,
+      "slack": 43,
+      "drag": 27,
+      "confidence": 69,
+      "score": 137,
+      "lane": "watch"
+    },
+    {
+      "name": "edge",
+      "focus": "route drift",
+      "signal": 78,
+      "slack": 28,
+      "drag": 14,
+      "confidence": 51,
+      "score": 193,
+      "lane": "ship"
+    },
+    {
+      "name": "recovery",
+      "focus": "secret scope",
+      "signal": 78,
+      "slack": 48,
+      "drag": 26,
+      "confidence": 46,
+      "score": 172,
+      "lane": "ship"
+    },
+    {
+      "name": "stale",
+      "focus": "rollout width",
+      "signal": 71,
+      "slack": 54,
+      "drag": 32,
+      "confidence": 82,
+      "score": 182,
+      "lane": "ship"
+    }
+  ]
+}
